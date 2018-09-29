@@ -128,5 +128,5 @@ public class Main {
 			Utils.savePostsToFile(fileName, ps);
 		}
 	}
-	
+
 }
