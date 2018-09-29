@@ -194,8 +194,8 @@ public class Utils {
 			}
 			fos.close();
 
-			logger.info("POST GUARDADOS EN EL ARCHIVO '" + file.getName() + "'.");
-			System.out.println("POST GUARDADOS EN EL ARCHIVO '" + file.getName() + "'.");
+			logger.info("POST GUARDADOS EN EL ARCHIVO  '" + file.getName() + "'.");
+			System.out.println("POST GUARDADOS EN EL ARCHIVO  '" + file.getName() + "'.");
 		} catch (IOException e) {
 			logger.error(e);
 		}

@@ -63,7 +63,7 @@ public class Main {
 						askToSaveFile("NewsFeed", newsFeed, scan);
 						break;
 					case 2:
-						System.out.println("Obteniendo Wall...");
+						System.out.println("Obteniendo Wall.. .");
 						ResponseList<Post> wall = fb.getPosts();
 						for (Post p : wall) {
 							Utils.printPost(p);
