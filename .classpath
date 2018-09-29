@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/gabo/git/Evidencia_Final_3/fbcmd4j/lib/facebook4j-core-2.4.9.jar"/>
+	<classpathentry kind="lib" path="/home/gabo/git/Evidencia_Final_3/fbcmd4j/lib/log4j-api-2.4.1.jar"/>
+	<classpathentry kind="lib" path="/home/gabo/git/Evidencia_Final_3/fbcmd4j/lib/log4j-core-2.4.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
