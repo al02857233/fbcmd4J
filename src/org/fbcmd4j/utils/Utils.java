@@ -166,7 +166,15 @@ public class Utils {
 		return fb;
 	}
 	
+	public static void printPost(Post p) {
+		if(p.getStory() != null)
+			System.out.println("POST: " + p.getStory());
+		if(p.getMessage() != null)
+			System.out.println("MENSAJE: " + p.getMessage() + "\n\n\n");
+		
+	}
 	
+
 	public static void printPost(Post p) {
 		if(p.getStory() != null)
 			System.out.println("POST: " + p.getStory());
@@ -194,8 +202,13 @@ public class Utils {
 			}
 			fos.close();
 
+
 			logger.info("POST GUARDADOS EN EL ARCHIVO  '" + file.getName() + "'.");
 			System.out.println("POST GUARDADOS EN EL ARCHIVO  '" + file.getName() + "'.");
+
+			logger.info("POST GUARDADOS EN EL ARCHIVO '" + file.getName() + "'.");
+			System.out.println("POST GUARDADOS EN EL ARCHIVO '" + file.getName() + "'.");
+
 		} catch (IOException e) {
 			logger.error(e);
 		}
