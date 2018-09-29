@@ -56,6 +56,11 @@ public class Main {
 						break;
 					case 1:
 						System.out.println("Obteniendo NewsFeed...");
+						ResponseList<Post> newsFeed = fb.getFeed();
+						for (Post p : newsFeed) {
+							Utils.printPost(p);
+						}
+						askToSaveFile("NewsFeed", newsFeed, scan);
 						break;
 					case 2:
 						System.out.println("Obteniendo Wall...");
@@ -87,5 +92,33 @@ public class Main {
 		}
 	}
 	
-	
+	public static void askToSaveFile(String fileName, ResponseList<Post> posts, Scanner scan) {
+		System.out.println("DESEA GUARDAR ? Si/No");
+		String option = scan.nextLine();
+		
+		if (option.contains("Si") || option.contains("si")) {
+			List<Post> ps = new ArrayList<>();
+			int n = 0;
+
+			while(n <= 0) {
+				try {
+					System.out.println("Cuántos posts deseas guardar?");
+					n = Integer.parseInt(scan.nextLine());					
+			
+					if(n <= 0) {
+						System.out.println("Favor de ingresar un número válido");
+					} else {
+						for(int i = 0; i<n; i++) {
+							if(i>posts.size()-1) break;
+							ps.add(posts.get(i));
+						}
+					}
+				} catch(NumberFormatException e) {
+					logger.error(e);
+				}
+			}
+
+			Utils.savePostsToFile(fileName, ps);
+		}
+	}
 }
