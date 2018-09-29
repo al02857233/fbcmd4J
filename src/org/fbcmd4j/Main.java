@@ -56,15 +56,29 @@ public class Main {
 						break;
 					case 1:
 						System.out.println("Obteniendo NewsFeed...");
+						ResponseList<Post> newsFeed = fb.getFeed();
+						for (Post p : newsFeed) {
+							Utils.printPost(p);
+						}
+						askToSaveFile("NewsFeed", newsFeed, scan);
 						break;
 					case 2:
-						System.out.println("Obteniendo Wall...");
+						System.out.println("Obteniendo Wall.. .");
+						ResponseList<Post> wall = fb.getPosts();
+						for (Post p : wall) {
+							Utils.printPost(p);
+						}		
+						askToSaveFile("Wall", wall, scan);
 						break;
 					case 3:
 						System.out.println("Introduzca el estado que quiere publicar: ");
+						String estado = scan.nextLine();
+						Utils.postStatus(estado, fb);
 						break;
 					case 4:
 						System.out.println("Introduzca el link que quiere publicar: ");
+						String link = scan.nextLine();
+						Utils.postLink(link, fb);
 						break;
 					case 5:
 						System.out.println("Saliendo de Facebook Command Line Client");
@@ -87,5 +101,34 @@ public class Main {
 		}
 	}
 	
+	public static void askToSaveFile(String fileName, ResponseList<Post> posts, Scanner scan) {
+		System.out.println("DESEA GUARDAR ? Si/No");
+		String option = scan.nextLine();
+		
+		if (option.contains("Si") || option.contains("si")) {
+			List<Post> ps = new ArrayList<>();
+			int n = 0;
+
+			while(n <= 0) {
+				try {
+					System.out.println("Cuántos posts deseas guardar?");
+					n = Integer.parseInt(scan.nextLine());					
+			
+					if(n <= 0) {
+						System.out.println("Favor de ingresar un número válido");
+					} else {
+						for(int i = 0; i<n; i++) {
+							if(i>posts.size()-1) break;
+							ps.add(posts.get(i));
+						}
+					}
+				} catch(NumberFormatException e) {
+					logger.error(e);
+				}
+			}
+
+			Utils.savePostsToFile(fileName, ps);
+		}
+	}
 	
 }
