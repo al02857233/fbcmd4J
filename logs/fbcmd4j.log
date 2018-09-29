@@ -1,0 +1,4 @@
+2018-09-29 14:10:00.317 [main] INFO  org.fbcmd4j.Main - Iniciando Facebook Command Line Client
+2018-09-29 14:10:51.473 [main] ERROR org.fbcmd4j.Main - java.util.NoSuchElementException
+2018-09-29 14:10:51.476 [main] ERROR org.fbcmd4j.Main - java.util.NoSuchElementException
+2018-09-29 14:10:51.478 [main] ERROR org.fbcmd4j.Main - java.util.NoSuchElementException
