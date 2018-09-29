@@ -167,4 +167,39 @@ public class Utils {
 	}
 	
 	
+	public static void printPost(Post p) {
+		if(p.getStory() != null)
+			System.out.println("POST: " + p.getStory());
+		if(p.getMessage() != null)
+			System.out.println("MENSAJE: " + p.getMessage() + "\n\n\n");
+		
+	}
+	
+	public static String savePostsToFile(String fileName, List<Post> posts) {
+		File file = new File(fileName + ".txt");
+
+		try {
+    		if(!file.exists()) {
+    			file.createNewFile();
+            }
+
+    		FileOutputStream fos = new FileOutputStream(file);
+			for (Post p : posts) {
+				String msg = "";
+				if(p.getStory() != null)
+					msg += "POST: " + p.getStory() + "\n";
+				if(p.getMessage() != null)
+					msg += "MENSAJE: " + p.getMessage() + "\n\n\n";
+				fos.write(msg.getBytes());
+			}
+			fos.close();
+
+			logger.info("POST GUARDADOS EN EL ARCHIVO '" + file.getName() + "'.");
+			System.out.println("POST GUARDADOS EN EL ARCHIVO '" + file.getName() + "'.");
+		} catch (IOException e) {
+			logger.error(e);
+		}
+        
+        return file.getName();
+	}	
 }
