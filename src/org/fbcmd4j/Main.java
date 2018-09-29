@@ -72,6 +72,8 @@ public class Main {
 						break;
 					case 3:
 						System.out.println("Introduzca el estado que quiere publicar: ");
+						String estado = scan.nextLine();
+						Utils.postStatus(estado, fb);
 						break;
 					case 4:
 						System.out.println("Introduzca el link que quiere publicar: ");

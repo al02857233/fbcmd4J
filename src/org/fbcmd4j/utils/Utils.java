@@ -183,6 +183,16 @@ public class Utils {
 		
 	}
 	
+
+	public static void printPost(Post p) {
+		if(p.getStory() != null)
+			System.out.println("POST: " + p.getStory());
+		if(p.getMessage() != null)
+			System.out.println("MENSAJE: " + p.getMessage() + "\n\n\n");
+		
+	}
+	
+
 	public static String savePostsToFile(String fileName, List<Post> posts) {
 		File file = new File(fileName + ".txt");
 
@@ -206,8 +216,13 @@ public class Utils {
 			logger.info("POST GUARDADOS EN EL ARCHIVO  '" + file.getName() + "'.");
 			System.out.println("POST GUARDADOS EN EL ARCHIVO  '" + file.getName() + "'.");
 
+
+			logger.info("POST GUARDADOS EN EL ARCHIVO  '" + file.getName() + "'.");
+			System.out.println("POST GUARDADOS EN EL ARCHIVO  '" + file.getName() + "'.");
+
 			logger.info("POST GUARDADOS EN EL ARCHIVO '" + file.getName() + "'.");
 			System.out.println("POST GUARDADOS EN EL ARCHIVO '" + file.getName() + "'.");
+
 
 		} catch (IOException e) {
 			logger.error(e);
@@ -215,4 +230,15 @@ public class Utils {
         
         return file.getName();
 	}	
+
+	
+	public static void postStatus(String msg, Facebook fb) {
+		try {
+			fb.postStatusMessage(msg);
+		} catch (FacebookException e) {
+			logger.error(e);
+		}		
+	}
+	
+
 }
