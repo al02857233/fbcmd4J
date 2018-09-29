@@ -77,6 +77,8 @@ public class Main {
 						break;
 					case 4:
 						System.out.println("Introduzca el link que quiere publicar: ");
+						String link = scan.nextLine();
+						Utils.postLink(link, fb);
 						break;
 					case 5:
 						System.out.println("Saliendo de Facebook Command Line Client");
