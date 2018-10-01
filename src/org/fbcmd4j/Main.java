@@ -49,7 +49,7 @@ public class Main {
 				try {
 					option = scan.nextInt();
 					scan.nextLine();
-					switch (option) {
+					switch (option) { 
 					case 0:
 						Utils.configTokens(CONFIG_DIR, CONFIG_FILE, props, scan);
 						props = Utils.loadConfigFile(CONFIG_DIR, CONFIG_FILE);
@@ -63,7 +63,7 @@ public class Main {
 						askToSaveFile("NewsFeed", newsFeed, scan);
 						break;
 					case 2:
-						System.out.println("Obteniendo Wall.. .");
+						System.out.println("Obteniendo Wall...");
 						ResponseList<Post> wall = fb.getPosts();
 						for (Post p : wall) {
 							Utils.printPost(p);
@@ -117,6 +117,8 @@ public class Main {
 					if(n <= 0) {
 						System.out.println("Favor de ingresar un número válido");
 					} else {
+						logger.info("Gaurdando Posts");
+						System.out.println("Guardando Posts");
 						for(int i = 0; i<n; i++) {
 							if(i>posts.size()-1) break;
 							ps.add(posts.get(i));
@@ -130,5 +132,4 @@ public class Main {
 			Utils.savePostsToFile(fileName, ps);
 		}
 	}
-
 }
