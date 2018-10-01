@@ -39,7 +39,7 @@ public class Utils {
 		Path configFolder = Paths.get(folderName);
 		Path configFile = Paths.get(folderName, fileName);
 		if (!Files.exists(configFile)) {
-			logger.info("Creando nuevo archivo de configuración.");
+			logger.info("Creando nuevo archivo de configuración."); 
 			
 			if (!Files.exists(configFolder))
 				Files.createDirectory(configFolder);
@@ -58,19 +58,24 @@ public class Utils {
 	}
 	
 	public static void configTokens(String folderName, String fileName, Properties props, Scanner scanner) {
+		logger.info("Configurando el Token"); 
 		if (props.getProperty("oauth.appId").isEmpty() || props.getProperty("oauth.appSecret").isEmpty()) {
 			System.out.println("Por favor ingrese appId:");
 			props.setProperty("oauth.appId", scanner.nextLine());
 			System.out.println("Por favor ingrese appSecret:");
 			props.setProperty("oauth.appSecret", scanner.nextLine());
+			logger.warn("El Archivo gbcmd4j.properties esta vacio"); 
+			System.out.println("El archivo esta vacio");
 		}
 
 		try {
+			
 			URL url = new URL("https://graph.facebook.com/v2.6/device/login");
 	        Map<String,Object> params = new LinkedHashMap<>();
-	        params.put("access_token", "536304116811398|a4db22ccd6c6ea964eca136323a28a6e");
+	        params.put("access_token", props.getProperty("oauth.appId") + "|" + props.getProperty("oauth.appSecret"));
 	        params.put("scope", props.getProperty("oauth.permissions"));
 
+       		
 	        StringBuilder postData = new StringBuilder();
 	        for (Map.Entry<String,Object> param : params.entrySet()) {
 	            if (postData.length() != 0) postData.append('&');
@@ -167,6 +172,8 @@ public class Utils {
 	}
 	
 	public static void printPost(Post p) {
+		logger.info("Imprimiendo Posts");
+		System.out.println("Imprimiendo Posts");
 		if(p.getStory() != null)
 			System.out.println("POST: " + p.getStory());
 		if(p.getMessage() != null)
@@ -174,26 +181,9 @@ public class Utils {
 		
 	}
 	
-
-	public static void printPost(Post p) {
-		if(p.getStory() != null)
-			System.out.println("POST: " + p.getStory());
-		if(p.getMessage() != null)
-			System.out.println("MENSAJE: " + p.getMessage() + "\n\n\n");
-		
-	}
-	
-
-	public static void printPost(Post p) {
-		if(p.getStory() != null)
-			System.out.println("POST: " + p.getStory());
-		if(p.getMessage() != null)
-			System.out.println("MENSAJE: " + p.getMessage() + "\n\n\n");
-		
-	}
-	
-
 	public static String savePostsToFile(String fileName, List<Post> posts) {
+		logger.info("Guardando Posts");
+		System.out.println("Guardando Posts");
 		File file = new File(fileName + ".txt");
 
 		try {
@@ -211,56 +201,9 @@ public class Utils {
 				fos.write(msg.getBytes());
 			}
 			fos.close();
-
-
-			logger.info("POST GUARDADOS EN EL ARCHIVO  '" + file.getName() + "'.");
-			System.out.println("POST GUARDADOS EN EL ARCHIVO  '" + file.getName() + "'.");
-
-
-			logger.info("POST GUARDADOS EN EL ARCHIVO  '" + file.getName() + "'.");
-			System.out.println("POST GUARDADOS EN EL ARCHIVO  '" + file.getName() + "'.");
 
 			logger.info("POST GUARDADOS EN EL ARCHIVO '" + file.getName() + "'.");
 			System.out.println("POST GUARDADOS EN EL ARCHIVO '" + file.getName() + "'.");
-
-
-		} catch (IOException e) {
-			logger.error(e);
-		}
-        
-        return file.getName();
-	}	
-
-
-	public static void printPost(Post p) {
-		if(p.getStory() != null)
-			System.out.println("POST: " + p.getStory());
-		if(p.getMessage() != null)
-			System.out.println("MENSAJE: " + p.getMessage() + "\n\n\n");
-		
-	}
-	
-	public static String savePostsToFile(String fileName, List<Post> posts) {
-		File file = new File(fileName + ".txt");
-
-		try {
-    		if(!file.exists()) {
-    			file.createNewFile();
-            }
-
-    		FileOutputStream fos = new FileOutputStream(file);
-			for (Post p : posts) {
-				String msg = "";
-				if(p.getStory() != null)
-					msg += "POST: " + p.getStory() + "\n";
-				if(p.getMessage() != null)
-					msg += "MENSAJE: " + p.getMessage() + "\n\n\n";
-				fos.write(msg.getBytes());
-			}
-			fos.close();
-
-			logger.info("POST GUARDADOS EN EL ARCHIVO  '" + file.getName() + "'.");
-			System.out.println("POST GUARDADOS EN EL ARCHIVO  '" + file.getName() + "'.");
 		} catch (IOException e) {
 			logger.error(e);
 		}
@@ -268,7 +211,6 @@ public class Utils {
         return file.getName();
 	}	
 	
-
 	public static void postStatus(String msg, Facebook fb) {
 		try {
 			fb.postStatusMessage(msg);
@@ -277,8 +219,9 @@ public class Utils {
 		}		
 	}
 	
-
 	public static void postLink(String link, Facebook fb) {
+		logger.info("Posteando Link");
+		System.out.println("Posteando Link");
 		try {
 			fb.postLink(new URL(link));
 		} catch (MalformedURLException e) {
@@ -287,5 +230,4 @@ public class Utils {
 			logger.error(e);
 		}
 	}
-
 }
